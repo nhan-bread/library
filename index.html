@@ -8,6 +8,28 @@
     <script src="javascript.js" defer></script>
 </head>
 <body>
-    
+    <div class="sidebar">
+        <fieldset>
+            <legend>Input book details</legend>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title">
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author">
+
+            <label for="pages">Page Count:</label>
+            <input type="text" id="pages" name="pages">
+
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+                <option value="read">read</option>
+                <option value="reading">reading</option>
+                <option value="not-read">not read yet</option>
+            </select>
+        </fieldset>
+        
+    </div>
+    <div class="container"></div>
 </body>
 </html>

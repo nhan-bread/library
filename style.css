@@ -1,0 +1,13 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+fieldset {
+    max-width: 80%;
+    appearance: none;
+}
+
+input {
+    width: 100%;
+}
