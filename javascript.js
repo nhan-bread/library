@@ -27,5 +27,5 @@ function displayBook(){
     })
 }
 
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", "Not Read Yet");
+addBookToLibrary("J.R.R. Tolkien", "The Hobbit", "295", "Not Read Yet");
 displayBook();
