@@ -1,9 +1,9 @@
 const library = [
-    {author: "Harper Lee", title: "To Kill a Mockingbird", pages: "281", status: "Not Read Yet"},
-    {author: "F. Scott Fitzgerald", title: "The Great Gatsby", pages: "180", status: "Read"},
+//    {title: "To Kill a Mockingbird", author: "Harper Lee", pages: "281", status: "Not Read Yet"},
+//    {title: "The Great Gatsby", author: "F. Scott Fitzgerald", pages: "180", status: "Read"},
 ];
 
-function Book(author, title, pages, status) {
+function Book(title, author, pages, status) {
     this.author = author;
     this.title = title;
     this.pages = pages;
@@ -12,14 +12,18 @@ function Book(author, title, pages, status) {
     this.id = id;
 }
 
-function addBookToLibrary(author, title, pages, status) {
-    const newBook = new Book(author, title, pages, status);
+function addBookToLibrary(title, author, pages, status) {
+    const newBook = new Book(title, author, pages, status);
     library.push(newBook);
 }
 
 const container = document.querySelector(".container");
 
 function displayBook(){
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    };
+
     library.forEach((book) => {
         let card = document.createElement("div");
         container.appendChild(card);
@@ -27,7 +31,7 @@ function displayBook(){
     })
 }
 
-// addBookToLibrary("J.R.R. Tolkien", "The Hobbit", "295", "Not Read Yet");
+// addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", "Not Read Yet");
 // displayBook();
 
 const addBookBtn = document.querySelector(".add-book");
@@ -44,5 +48,5 @@ addBookBtn.addEventListener("click", (event) => {
     const newStatus = inputStatus.value;
 
     addBookToLibrary(newTitle, newAuthor, newPages, newStatus);
+    displayBook();
 })
-
