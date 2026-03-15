@@ -27,5 +27,22 @@ function displayBook(){
     })
 }
 
-addBookToLibrary("J.R.R. Tolkien", "The Hobbit", "295", "Not Read Yet");
-displayBook();
+// addBookToLibrary("J.R.R. Tolkien", "The Hobbit", "295", "Not Read Yet");
+// displayBook();
+
+const addBookBtn = document.querySelector(".add-book");
+const inputTitle = document.getElementById("title");
+const inputAuthor = document.getElementById("author");
+const inputPages = document.getElementById("pages");
+const inputStatus = document.getElementById("status");
+
+addBookBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    const newTitle = inputTitle.value;
+    const newAuthor = inputAuthor.value;
+    const newPages = inputPages.value;
+    const newStatus = inputStatus.value;
+
+    addBookToLibrary(newTitle, newAuthor, newPages, newStatus);
+})
+
