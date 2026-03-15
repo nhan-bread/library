@@ -19,15 +19,31 @@ function addBookToLibrary(title, author, pages, status) {
 
 const container = document.querySelector(".container");
 
-function displayBook(){
+function clearDisplay() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     };
+}
 
+function displayBook(){
+    clearDisplay();
     library.forEach((book) => {
         let card = document.createElement("div");
         container.appendChild(card);
-        card.textContent = `Title: ${book.title} Author: ${book.author} Pages: ${book.pages} Status: ${book.status}`;
+        card.textContent = `Title: ${book.title} Author: ${book.author} Pages: ${book.pages} Status: ${book.status} `;
+        let removeBtn = document.createElement("button");
+        removeBtn.textContent = `Remove`;
+        card.appendChild(removeBtn);
+        removeBtn.dataset.id = book.id;
+
+        removeBtn.addEventListener("click", (e) => {
+            const idToRemove = e.target.dataset.id;
+//            console.log(idToRemove);
+            const bookToRemove = library.find(book => book.id == idToRemove);
+            const bookIndex = library.indexOf(bookToRemove);
+            library.splice(bookIndex, 1);
+            displayBook();
+        })
     })
 }
 
