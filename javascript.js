@@ -44,6 +44,18 @@ function displayBook(){
             library.splice(bookIndex, 1);
             displayBook();
         })
+
+        let statusBtn = document.createElement("button");
+        statusBtn.textContent = `Change status`;
+        card.appendChild(statusBtn);
+        statusBtn.dataset.id = book.id;
+
+        statusBtn.addEventListener("click", (e) => {
+            const statusToChange = e.target.dataset.id;
+            const bookToChange = library.find(book => book.id == statusToChange);
+            bookToChange.changeStatus();
+            displayBook();
+        })
     })
 }
 
@@ -66,3 +78,13 @@ addBookBtn.addEventListener("click", (event) => {
     addBookToLibrary(newTitle, newAuthor, newPages, newStatus);
     displayBook();
 })
+
+Book.prototype.changeStatus = function() {
+    if (this.status === "Read") {
+        this.status = "Reading";
+    } else if (this.status === "Reading") {
+        this.status = "Not read yet";
+    } else if (this.status === "Not read yet") {
+        this.status = "Read";
+    }
+}
