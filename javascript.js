@@ -3,13 +3,24 @@ const library = [
 //    {title: "The Great Gatsby", author: "F. Scott Fitzgerald", pages: "180", status: "Read"},
 ];
 
-function Book(title, author, pages, status) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.status = status;
-    id = crypto.randomUUID();
-    this.id = id;
+class Book {
+    constructor(title, author, pages, status) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.status = status;
+        this.id = crypto.randomUUID();
+    }
+
+    changeStatus() {
+        if (this.status === "Read") {
+        this.status = "Reading";
+        } else if (this.status === "Reading") {
+            this.status = "Not read yet";
+        } else if (this.status === "Not read yet") {
+            this.status = "Read";
+        }
+    }
 }
 
 function addBookToLibrary(title, author, pages, status) {
@@ -38,7 +49,6 @@ function displayBook(){
 
         removeBtn.addEventListener("click", (e) => {
             const idToRemove = e.target.dataset.id;
-//            console.log(idToRemove);
             const bookToRemove = library.find(book => book.id == idToRemove);
             const bookIndex = library.indexOf(bookToRemove);
             library.splice(bookIndex, 1);
@@ -59,9 +69,6 @@ function displayBook(){
     })
 }
 
-// addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", "Not Read Yet");
-// displayBook();
-
 const addBookBtn = document.querySelector(".add-book");
 const inputTitle = document.getElementById("title");
 const inputAuthor = document.getElementById("author");
@@ -78,13 +85,3 @@ addBookBtn.addEventListener("click", (event) => {
     addBookToLibrary(newTitle, newAuthor, newPages, newStatus);
     displayBook();
 })
-
-Book.prototype.changeStatus = function() {
-    if (this.status === "Read") {
-        this.status = "Reading";
-    } else if (this.status === "Reading") {
-        this.status = "Not read yet";
-    } else if (this.status === "Not read yet") {
-        this.status = "Read";
-    }
-}
